@@ -22,18 +22,7 @@ public class InsertionSort {
         /*
             Complete code here. You must call `swap()` method.
          */
-        throw new RuntimeException("Not implemented yet.");
+        throw new RuntimeException("Not implemented yet."); // Remove this line when you implement this method.
     }
 
-    /**
-     * Swap elements at position i and j in array xs
-     * @param xs integer array
-     * @param i index of element to be swapped
-     * @param j index of element to be swapped
-     */
-    private static void swap(int[] xs, int i, int j) {
-        /*
-            Complete code here.
-         */
-    }
 }

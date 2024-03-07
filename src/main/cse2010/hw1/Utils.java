@@ -10,7 +10,7 @@ public class Utils {
      */
     public static int findIndex(int[] xs, int target) {
 
-        return 0;
+        return -1;
     }
 
     /**
@@ -31,6 +31,18 @@ public class Utils {
     public static String[] reverse(String[] xs) {
 
         return null;
+    }
+
+    /**
+     * Swap elements at position i and j in array xs
+     * @param xs integer array
+     * @param i index of element to be swapped
+     * @param j index of element to be swapped
+     */
+    public static void swap(int[] xs, int i, int j) {
+        /*
+            Complete code here.
+         */
     }
 
     /**

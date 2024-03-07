@@ -2,8 +2,12 @@ package cse2010.hw1;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,7 +42,8 @@ class UtilsTest {
     }
 
     @Test
-    void sum_returns_total_of_an_entire_array() {
+    @DisplayName("sum should return total of an entire array")
+    void test_sum() {
         // Given
         double[] xs = new double[100];
         Arrays.setAll(xs, i -> i + 1);
@@ -51,7 +56,8 @@ class UtilsTest {
     }
 
     @Test
-    void reverse_returns_reversed_array() {
+    @DisplayName("reverse should return a newly created and reversed array")
+    void test_reverse() {
         // Given
         String[] xs = {"Hello", "Mellow", "Yellow"};
         String[] ys = {"Yellow", "Mellow", "Hello"};
@@ -62,31 +68,64 @@ class UtilsTest {
         // Then
         assertEquals(3, result.length);
         assertArrayEquals(ys, result);
+        assertArrayEquals(new String[]{"Hello", "Mellow", "Yellow"}, xs);
     }
 
     @Test
-    void average_returns_running_averages() {
+    @DisplayName("reverse_in_place should reverse an array in place")
+    void test_reverse_in_place() {
         // Given
-        int[] xs = {1, 3, 5, 7, 9};
-        double[] ys = {1.0, 2.0, 3.0, 4.0, 5.0};
+        String[] xs = {"Hello", "Mellow", "Yellow"};
+        String[] ys = {"Yellow", "Mellow", "Hello"};
 
         // When
-        double[] result = Utils.average(xs);
+        Utils.reverse_in_place(xs);
 
         // Then
-        assertArrayEquals(ys, result);
+        assertArrayEquals(ys, xs);
     }
 
     @Test
-    void average_returns_running_averages2() {
-        // Given
-        int[] xs = {11, 5, 7, 13};
-        double[] ys = {11.0, 8.0, 7.66, 9.0};
+    @DisplayName("swap should swap two elements in an array")
+    void test_swap1() {
+        // Arrange (Given)
+        int[] xs = {1, 2, 3, 4, 5};
 
+        // Act (When)
+        Utils.swap(xs, 0, 4);
+
+        // Assert (Then)
+        assertArrayEquals(new int[]{5, 2, 3, 4, 1}, xs);
+    }
+
+    @Test
+    @DisplayName("swap_should_throw_exception_if_index_is_out_of_bound")
+    void test_swap2() {
+        // Arrange (Given)
+        int[] xs = {1, 2, 3, 4, 5};
+
+        // Act (When)
+        // Assert (Then)
+        assertThrows(ArrayIndexOutOfBoundsException.class,
+                () -> Utils.swap(xs, 0, 5));
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideInputsAndResults")
+    @DisplayName("average should return running averages")
+    void test_average2(int[] input, double[] expected) {
+        // Given
         // When
-        double[] result = Utils.average(xs);
+        double[] result = Utils.average(input);
 
         // Then
-        assertArrayEquals(ys, result, 0.01);
+        assertArrayEquals(expected, result, 0.01);
+    }
+
+    private static Stream<Arguments> provideInputsAndResults() {
+        return Stream.of(
+                Arguments.of(new int[] {1, 3, 5, 7, 9}, new double[] {1.0, 2.0, 3.0, 4.0, 5.0}),
+                Arguments.of(new int[] {11, 5, 7, 13}, new double[] {11.0, 8.0, 7.66, 9.0})
+        );
     }
 }
