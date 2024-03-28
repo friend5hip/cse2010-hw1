@@ -20,7 +20,7 @@ public class InsertionSort {
      */
     private static void insert(int[] xs, int k) {
         /*
-            Complete code here. You must call `swap()` method.
+            Complete code here. You must call `swap()` method in `Utils`.
          */
         throw new RuntimeException("Not implemented yet."); // Remove this line when you implement this method.
     }
