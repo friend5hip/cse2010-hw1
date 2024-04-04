@@ -9,7 +9,11 @@ public class Utils {
      * @return index of a matching element, -1 otherwise
      */
     public static int findIndex(int[] xs, int target) {
-
+        for (int i = 0; i < xs.length; i++) {
+            if (xs[i] == target) {
+                return i;
+            }
+        }
         return -1;
     }
 
@@ -19,8 +23,12 @@ public class Utils {
      * @return sum of an array
      */
     public static double sum(double[] xs) {
+        double sum = 0.0;
 
-        return 0.0;
+        for (int i = 0; i < xs.length; i++) {
+            sum += xs[i];
+        }
+        return sum;
     }
 
     /**
@@ -29,8 +37,14 @@ public class Utils {
      * @return a newly created array containing elements of xs in reversed order
      */
     public static String[] reverse(String[] xs) {
+        String [] reverseXs = new String[xs.length];
+        int j = 0;
 
-        return null;
+        for (int i = xs.length - 1; i >= 0; i--) {
+            reverseXs[j] = xs[i];
+            j++;
+        }
+        return reverseXs;
     }
 
     /**
@@ -40,9 +54,9 @@ public class Utils {
      * @param j index of element to be swapped
      */
     public static void swap(int[] xs, int i, int j) {
-        /*
-            Complete code here.
-         */
+        int temp = xs[i];
+        xs[i] = xs[j];
+        xs[j] = temp;
     }
 
     /**
@@ -53,7 +67,11 @@ public class Utils {
      * @param xs String array
      */
     public static void reverse_in_place(String[] xs) {
-
+        for (int i = 0; i < xs.length / 2; i++) {
+            String temp = xs[i];
+            xs[i] = xs[xs.length - 1 - i];
+            xs[xs.length - 1 - i] = temp;
+        }
     }
 
     /**
@@ -70,8 +88,14 @@ public class Utils {
      *      2.5 = (1 + 2 + 3 + 4) / 4
      */
     public static double[] average(int[] xs) {
+        double[] runningAvg = new double[xs.length];
+        double sum = 0.0;
 
-        return null;
+        for (int i = 0; i < xs.length; i++) {
+            sum += xs[i];
+            runningAvg[i] = sum / (i+1); 
+        }
+        return runningAvg;
     }
 
 }
