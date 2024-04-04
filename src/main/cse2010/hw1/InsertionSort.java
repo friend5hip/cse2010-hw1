@@ -22,8 +22,13 @@ public class InsertionSort {
         /*
             Complete code here. You must call `swap()` method in `Utils`.
          */
-        
-        throw new RuntimeException("Not implemented yet."); // Remove this line when you implement this method.
+        int cur = xs[k];
+        int j = k;
+        while (j > 0 && xs[j-1] < cur) {
+            Utils.swap(xs, j, j-1);
+            j--;
+        }
+        xs[j] = cur;
     }
 
 }
